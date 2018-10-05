@@ -25,7 +25,7 @@ include_directories (${OPENCL_INCLUDE_DIRS})
 add_library (OpenCL SHARED ${OPENCL_ICD_LOADER_SOURCES})
 set_target_properties (OpenCL PROPERTIES VERSION "1.2" SOVERSION "1")
 
-if ("${CMAKE_SYSTEM_NAME}" STREEQUAL "Windows")
+if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
   set_target_properties (OpenCL PROPERTIES PREFIX "")
 endif()
 

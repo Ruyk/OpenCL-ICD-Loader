@@ -42,7 +42,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <initguid.h>
-#include <Devpkey.h>
+#include <devpkey.h>
 #include <devguid.h>
 
  // This GUID was only added to devguid.h on Windows SDK v10.0.16232 which
@@ -227,8 +227,9 @@ bool khrIcdOsVendorsEnumerateHKR(void)
     ULONG szBuffer = 0;
 
     OLECHAR display_adapter_guid_str[MAX_GUID_STRING_LEN];
-    ULONG ulFlags = CM_GETIDLIST_FILTER_CLASS |
+    ULONG ulFlags; /* = CM_GETIDLIST_FILTER_CLASS |
                     CM_GETIDLIST_FILTER_PRESENT;
+                    */
 
     iret = StringFromGUID2(
         &GUID_DEVCLASS_DISPLAY,
@@ -351,13 +352,14 @@ bool khrIcdOsVendorsEnumerateHKR(void)
                     KHR_ICD_WIDE_TRACE(L"    deviceInstanceID: %ls\n", deviceInstanceID);
                 }
 
+                /*
                 ret = CM_Get_DevNode_PropertyW(
                     devchild,
                     &DEVPKEY_Device_ClassGuid,
                     &devpropType,
                     (PBYTE)&guid,
                     &szGuid,
-                    0);
+                    0); */
 
                 if (CR_SUCCESS != ret ||
                     !IsEqualGUID(&OCL_GUID_DEVCLASS_SOFTWARECOMPONENT, &guid))
